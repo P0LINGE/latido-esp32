@@ -23,15 +23,16 @@
 <p id="estado"></p>
 
 <script>
-  const client = mqtt.connect('wss://test.mosquitto.org:8081');
+  const topic = "latido/amor/polinge";
 
-  client.on('connect', function () {
-    document.getElementById("estado").innerHTML =
-      "Conectado 💌";
+  const client = mqtt.connect("wss://test.mosquitto.org:8081");
+
+  client.on("connect", function () {
+    document.getElementById("estado").innerHTML = "Conectado 💌";
   });
 
   function enviar(mensaje) {
-    client.publish('BelloLumicino', mensaje);
+    client.publish(topic, mensaje);
   }
 </script>
 
@@ -39,4 +40,5 @@
 </html>
 
 <!-- publicado -->
+
 
