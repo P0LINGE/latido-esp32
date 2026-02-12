@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>La Distanza</title>
+
+  <!-- Librería MQTT -->
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+
+<body style="text-align:center;font-family:Arial;background:#fff0f5">
+
+<h2>La Distanza💕</h2>
+<p>Toca un botón</p>
+
+<button onclick="enviar('pienso')">Te pienso ❤️</button><br><br>
+<button onclick="enviar('extrano')">Te extraño 💙</button><br><br>
+<button onclick="enviar('feliz')">Estoy feliz 💚</button><br><br>
+<button onclick="enviar('pensando')">Pensando en ti 💜</button><br><br>
+<button onclick="enviar('quiero')">Te quiero 🤍</button><br><br>
+<button onclick="enviar('latido')">Latido 💓</button>
+
+<p id="estado"></p>
+
+<script>
+  const client = mqtt.connect('wss://test.mosquitto.org:8081');
+
+  client.on('connect', function () {
+    document.getElementById("estado").innerHTML =
+      "Conectado 💌";
+  });
+
+  function enviar(mensaje) {
+    client.publish('BelloLumicino', mensaje);
+  }
+</script>
+
+</body>
+</html>
